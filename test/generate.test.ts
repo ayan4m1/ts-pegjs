@@ -8,7 +8,7 @@ import { exec as execNode } from 'node:child_process';
 import peggy from 'peggy';
 
 // Local imports
-import tspegjs from '../src/tspegjs';
+import { TsPegjs } from '../src/tspegjs';
 
 const exec = promisify(execNode);
 
@@ -107,7 +107,7 @@ async function generateParser(
     output: 'source',
     trace: true,
     cache: true,
-    plugins: [tspegjs],
+    plugins: [new TsPegjs()],
     // The Peggy types do not allow extending the config when a plugin is added, so we have to disable ts temporarily
     // @ts-ignore-next-line
     tspegjs: {

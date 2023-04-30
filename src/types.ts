@@ -1,4 +1,8 @@
-import type { SourceOutputs, BuildOptionsBase } from 'peggy';
+import type { SourceOutputs, BuildOptionsBase, Config } from 'peggy';
+
+export interface ITsPegjs {
+  use(config: Config, options: TsPegjsParserBuildOptions): void;
+}
 
 export type TsPegjsOptions = {
   /**

@@ -1,11 +1,9 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import * as fs from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 import { exec as execNode } from 'node:child_process';
-import peggy from 'peggy';
 
 // Local imports
 import packageJson from '../package.json';

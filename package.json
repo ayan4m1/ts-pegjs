@@ -25,13 +25,15 @@
   },
   "exports": {
     "import": "./dist/tspegjs.mjs",
-    "require": "./dist/tspegjs.js"
+    "require": "./dist/tspegjs.js",
+    "types": "./dist/tspegjs.d.ts"
   },
   "files": [
     "LICENSE",
     "package.json",
     "dist/**/*"
   ],
+  "types": "./dist/tspegjs.d.ts",
   "scripts": {
     "clean": "rimraf --glob output/*.ts output/*.js",
     "pretest": "npm run clean",
@@ -44,6 +46,7 @@
     "peggy": "^3.0.2"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.0",
     "@types/node": "^18.15.11",
     "@types/prettier": "^2.7.2",
     "@typescript-eslint/eslint-plugin": "^5.58.0",

@@ -8,11 +8,13 @@ import {
   isLiteral,
   wrapNodeInAsConstDeclaration
 } from './helpers';
-import prettier from 'prettier/standalone';
-import * as prettierPluginTypescript from 'prettier/parser-typescript';
+import prettier from 'prettier/standalone.js';
+import prettierPluginTypescript from 'prettier/parser-typescript.js';
 import { snakeToCamel } from './snake-to-camel';
 import { getUniqueName, isKeyword } from './get-unique-name';
 import { pruneCircularReferences } from './prune-circular-references';
+
+const { generate } = peggy;
 
 type Grammar = ast.Grammar;
 type Expression = ast.Expression;
@@ -111,7 +113,7 @@ export class TypeExtractor {
 
   constructor(grammar: Grammar | string, options?: TypeExtractorOptions) {
     if (typeof grammar === 'string') {
-      grammar = peggy.generate(grammar, { output: 'ast' });
+      grammar = generate(grammar, { output: 'ast' });
     }
     this.grammar = grammar;
     Object.assign(this.options, options || {});
@@ -369,9 +371,6 @@ export class TypeExtractor {
       case 'action':
         return this._getTypeForAction(expr);
     }
-    const unknownType: never = type;
-    console.warn('Peggy node of type', unknownType, 'is currently not processed');
-    return 'unknown';
   }
 
   _getTypeForAction(action: ActionExpression): string {

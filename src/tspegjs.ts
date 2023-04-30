@@ -1,8 +1,8 @@
 import type { Config } from 'peggy';
 import { generateParser } from './passes/generate-ts';
-import { TsPegjsParserBuildOptions } from './types';
+import { TsPegjsParserBuildOptions, ITsPegjs } from './types';
 
-export default {
+export class TsPegjs implements ITsPegjs {
   use(config: Config, options: TsPegjsParserBuildOptions) {
     // We depend on the code generated being an IIF
     (options as any).format = 'bare';
@@ -16,4 +16,4 @@ export default {
       options.tspegjs.customHeader = null;
     }
   }
-};
+}

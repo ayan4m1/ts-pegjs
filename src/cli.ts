@@ -2,12 +2,13 @@
 
 import * as fs from 'node:fs';
 import * as process from 'node:process';
-import peggy, { ParserBuildOptions } from 'peggy';
-import tspegjs from './tspegjs';
+import * as peggy from 'peggy';
+import { ParserBuildOptions } from 'peggy';
+import { TsPegjs } from './tspegjs';
 import { version } from '../package.json';
 import { TsPegjsParserBuildOptions } from './types';
 
-const generate = peggy.generate;
+const { generate } = peggy;
 
 let args = process.argv;
 args.shift();
@@ -75,7 +76,7 @@ function generateParser(
       output: 'source',
       trace: trace,
       cache: cache,
-      plugins: [tspegjs],
+      plugins: [new TsPegjs()],
       tspegjs: {
         customHeader
       }
